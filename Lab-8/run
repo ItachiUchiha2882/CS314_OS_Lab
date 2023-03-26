@@ -1,0 +1,12 @@
+#!/bin/bash
+
+g++ 200010004_fifo.cpp -o 200010004_fifo;
+./200010004_fifo 60 20 60 req1.dat;
+g++ 200010004_lru.cpp -o 200010004_lru;
+./200010004_lru 60 20 60 req1.dat;
+g++ 200010004_random.cpp -o 200010004_random;
+./200010004_random 60 20 60 req1.dat;
+# ./200010004_fifo 60 $1 60 req2.dat;
+# ./200010004_fifo 60 $1 60 req3.dat;
+# ./200010004_fifo 60 $1 60 req4.dat;
+# ./200010004_fifo 60 $1 60 req5.dat;
