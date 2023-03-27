@@ -118,10 +118,14 @@ int common_open(char path[PATH_MAX], int oflags, mode_t omode)
 		if (r == OK){
 			exist = FALSE; /* We just created the file */
 			struct vmnt *vmpPath;
+			// This struct likely represents a virtual mount point, which is an abstraction of the file system.
 			vmpPath = find_vmnt(vp->v_fs_e);
+			// This function likely searches for a virtual mount point based on the file system entity provided.
 			if (strcmp(vmpPath->m_mount_path, "/home") == 0)
+			// If a virtual mount point is found, the "m_mount_path" field of the "vmpPath" struct is compared against the string "/home" using the "strcmp" function
 				printf("file created: %llu\n", vp->v_inode_nr); // Assignment 9 changes done here.
 		}
+		// this code appears to be checking if a file was just created and if so, whether it was created in the "/home" directory. If the file was created in "/home", a message is printed to the console with the inode number of the file
 /*===========================================================================*/
 
 	else if (r != EEXIST) {		/* other error */

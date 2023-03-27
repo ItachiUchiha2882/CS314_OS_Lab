@@ -158,18 +158,21 @@ int do_unlink(void)
  *				Assignment 9			    *
  *===========================================================================*/
   lookup_init(&stickycheck, resolve.l_path, PATH_RET_SYMLINK, &vmp2, &vp);
+  // This function is likely initializing a lookup operation to find a specific file in the file system, based on the path provided in "resolve.l_path". The "PATH_RET_SYMLINK" parameter suggests that the lookup operation should follow symbolic links if encountered. The "vmp2" parameter may represent a virtual mount point, while "vp" may represent a vnode, which is an abstraction of a file or directory within the file system.
   stickycheck.l_vmnt_lock = VMNT_READ;
   stickycheck.l_vnode_lock = VNODE_READ;
+  // These fields likely represent locks on the virtual mount point and vnode being accessed
   vp = advance(dirp, &stickycheck, fp);
-  
+  // This function likely advances the lookup operation to the next vnode in the file system. The resulting vnode is assigned to the "vp" variable
   // Printing the inode
   if (strcmp(vmp->m_mount_path, "/home") == 0){
     printf("file deleted: %llu\n", vp->v_inode_nr); // Assignment 9 changes done here.
   }
 
-  if (vp != NULL){
+  if (vp != NULL){ // checks whether "vp" is a valid vnode
     unlock_vnode(vp);
     put_vnode(vp);
+    // If so, unlock the vnode and release its resources, respectively. This code block is likely cleaning up after the lookup operation is complete.
   }
 /*===========================================================================*/
 
